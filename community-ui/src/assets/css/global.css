@@ -1,0 +1,16 @@
+body {
+	background: #eee;
+	font-family: arial, STHeiti, 'Microsoft YaHei', \5b8b\4f53;
+    margin: 0;
+    padding: 0;
+    min-width: 960px;
+
+    height: 100%;
+}
+.nk-main-repair {
+    padding-top: 60px;
+}
+.nk-tabs {
+    background-color: white;
+    padding: 20px;
+}
