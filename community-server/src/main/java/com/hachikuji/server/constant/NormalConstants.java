@@ -1,6 +1,6 @@
 package com.hachikuji.server.constant;
 
-public class CommunityConstants {
+public class NormalConstants {
 
     /**
      * 未激活
@@ -19,7 +19,7 @@ public class CommunityConstants {
     /**
      * 操作失败
      */
-    public static int Community_SERVICE_ERROR = -1;
+    public static int SERVICE_ERROR = -1;
 
     /**
      * 无效
@@ -31,6 +31,12 @@ public class CommunityConstants {
      * 有效
      */
     public static int TICKET_VALID = 1;
+
+    /**
+     *  评论类型
+     */
+    public static int ENTITY_TYPE_POST = 1;
+    public static int ENTITY_TYPE_COMMENT = 2;
 
 
 

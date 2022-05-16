@@ -1,4 +1,4 @@
-package com.hachikuji.server.model;
+package com.hachikuji.server.domain;
 
 
 import lombok.Data;

@@ -9,7 +9,7 @@ export function getStatusById(id: string) {
 
 export function activate(id: string, activationCode: string) {
     return request({
-        url: '/register/activation/id/' + id + '/activationCode/' + activationCode,
+        url: '/register/activate/id/' + id + '/code/' + activationCode,
         method: 'get',
     })
 }

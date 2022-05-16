@@ -25,7 +25,7 @@ public class CaptchaController {
     @Autowired
     private RedisCache redisCache;
 
-    @GetMapping("/captchaImage")
+    @GetMapping("/captcha")
     public AjaxResult getCaptchaImage(){
 
         AjaxResult ajax = AjaxResult.success();

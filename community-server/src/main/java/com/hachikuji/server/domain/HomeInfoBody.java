@@ -1,20 +1,20 @@
-package com.hachikuji.server.model;
+package com.hachikuji.server.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class HomeBody implements Serializable {
+public class HomeInfoBody extends UserInfoBody{
 
-    private static final long serialVersionUID = 1L;
-
-    private String username;
-
-    private String headerUrl;
+    /**
+     * 帖子信息
+     */
+    private Integer discussPostId;
 
     private String title;
 
@@ -23,6 +23,5 @@ public class HomeBody implements Serializable {
     private Integer commentCount;
 
     private Double score;
-
 
 }

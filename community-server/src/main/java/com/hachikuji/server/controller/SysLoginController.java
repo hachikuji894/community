@@ -2,7 +2,7 @@ package com.hachikuji.server.controller;
 
 import com.hachikuji.core.constant.Constants;
 import com.hachikuji.core.domain.AjaxResult;
-import com.hachikuji.server.model.LoginBody;
+import com.hachikuji.server.domain.LoginBody;
 import com.hachikuji.server.service.SysLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +15,14 @@ public class SysLoginController {
     @Autowired
     private SysLoginService loginService;
 
+    /**
+     * 登录接口
+     * 通过 SpringSecurity 的 token 授权机制控制访问权限
+     * /logout 登出接口在其配置类中设置
+     *
+     * @param body 登录信息
+     * @return token
+     */
     @PostMapping("/login")
     public AjaxResult login(@RequestBody LoginBody body){
 

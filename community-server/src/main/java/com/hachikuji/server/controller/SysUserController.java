@@ -14,10 +14,14 @@ public class SysUserController {
     @Autowired
     SysUserService userService;
 
+    /**
+     * 请求获得全部用户信息
+     * @return 用户信息
+     */
     @GetMapping("/getInfo")
     public AjaxResult getInfo(){
 
-        return AjaxResult.success(userService.getUser());
+        return AjaxResult.success(userService.getUserInfo());
 
     }
 }

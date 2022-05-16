@@ -1,7 +1,7 @@
 package com.hachikuji.server.controller;
 
 import com.hachikuji.core.domain.AjaxResult;
-import com.hachikuji.server.model.RegisterBody;
+import com.hachikuji.server.domain.RegisterBody;
 import com.hachikuji.server.service.SysRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class SysRegisterController {
     /**
      * 注册账户
      *
-     * @param registerBody 注册包装类
+     * @param registerBody 注册信息
      * @return 注册得到 id
      */
     @PostMapping("")
@@ -36,12 +36,12 @@ public class SysRegisterController {
     /**
      * 判断账号或邮箱是否已经存在
      *
-     * @param key 属性
+     * @param key 属性（账号 or 邮箱）
      * @param value 值
      * @return true or false
      */
     @GetMapping("/exist/{key}/{value}")
-    public AjaxResult exist(@PathVariable("key") String key, @PathVariable("value") String value) {
+    public AjaxResult exist(@PathVariable String key, @PathVariable String value) {
 
         return AjaxResult.success(registerService.exist(key, value));
 
@@ -54,7 +54,7 @@ public class SysRegisterController {
      * @return 状态信息
      */
     @GetMapping("/status/id/{id}")
-    public AjaxResult status(@PathVariable("id") int id) {
+    public AjaxResult status(@PathVariable int id) {
 
         String message = registerService.status(id);
 
@@ -67,10 +67,10 @@ public class SysRegisterController {
      *
      * @param id 用户 id
      * @param activationCode 用户 激活码
-     * @return 激活信息
+     * @return 激活反馈信息
      */
-    @GetMapping("/activation/id/{id}/activationCode/{activationCode}")
-    public AjaxResult activate(@PathVariable("id") int id, @PathVariable("activationCode") String activationCode) {
+    @GetMapping("/activate/id/{id}/code/{code}")
+    public AjaxResult activate(@PathVariable("id") int id, @PathVariable("code") String activationCode) {
 
         String message = registerService.activation(id, activationCode);
 

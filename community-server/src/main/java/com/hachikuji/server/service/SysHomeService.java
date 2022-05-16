@@ -4,7 +4,7 @@ import com.hachikuji.core.domain.model.DataTable;
 import com.hachikuji.core.service.BaseService;
 import com.hachikuji.frame.generate.entity.DiscussPost;
 import com.hachikuji.frame.generate.service.DiscussPostService;
-import com.hachikuji.server.model.HomeBody;
+import com.hachikuji.server.domain.HomeInfoBody;
 import com.hachikuji.frame.generate.entity.User;
 import com.hachikuji.frame.generate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class SysHomeService extends BaseService {
     @Autowired
     private UserService userService;
 
-    public DataTable getHomeDataTablePage(){
+    public DataTable getHomePage(){
 
-        List<HomeBody> rows = new ArrayList<>();
+        List<HomeInfoBody> rows = new ArrayList<>();
 
         //启动分页
         startPage();
@@ -36,8 +36,9 @@ public class SysHomeService extends BaseService {
         //再查询
         for(DiscussPost p:posts){
 
-            HomeBody body = new HomeBody();
+            HomeInfoBody body = new HomeInfoBody();
 
+            body.setDiscussPostId(p.getId());
             body.setTitle(p.getTitle());
             body.setCreateTime(p.getCreateTime());
             body.setScore(p.getScore());

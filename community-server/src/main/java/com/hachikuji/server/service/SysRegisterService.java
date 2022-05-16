@@ -6,7 +6,7 @@ import com.hachikuji.core.exception.ServiceException;
 import com.hachikuji.frame.tool.EmailClient;
 import com.hachikuji.frame.generate.entity.User;
 import com.hachikuji.frame.generate.service.UserService;
-import com.hachikuji.server.constant.CommunityConstants;
+import com.hachikuji.server.constant.NormalConstants;
 import com.hachikuji.core.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,14 +89,14 @@ public class SysRegisterService {
 
         User user = userService.getById(id);
 
-        if(user.getStatus() == CommunityConstants.ACTIVATION_DONE)
+        if(user.getStatus() == NormalConstants.ACTIVATION_DONE)
 
             return "该账号已经被激活，请不要重复激活！";
 
         if(user.getActivationCode().equals(activationCode)){
 
             UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
-            updateWrapper.eq("id",id).set("status", CommunityConstants.ACTIVATION_DONE);
+            updateWrapper.eq("id",id).set("status", NormalConstants.ACTIVATION_DONE);
             userService.update(null, updateWrapper);
 
             return "激活成功，您的账号已经可以正常使用了！";
@@ -110,7 +110,7 @@ public class SysRegisterService {
 
         int status = userService.getById(id).getStatus();
 
-        if (status == CommunityConstants.ACTIVATION_UNDO)
+        if (status == NormalConstants.ACTIVATION_UNDO)
             return  "注册成功，我们已经向您的邮箱发送了一封激活邮件，请尽快激活！";
         else
             return  "该账号已经被激活，请登录！";

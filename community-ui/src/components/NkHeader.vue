@@ -37,7 +37,7 @@
       </el-col>
       <el-col :span="10">
         <!-- 搜索表单 -->
-        <el-form :inline="true" :model="formSearch" class="serach-form">
+        <el-form :inline="true" :model="formSearch" class="search-form">
           <el-form-item>
             <el-input v-model="formSearch.detail" placeholder=" " style="margin-top: 10px;"></el-input>
           </el-form-item>
@@ -82,7 +82,7 @@ const onSubmit = () => {
   padding-right: 20px;
   padding-top: 8px;
 }
-.serach-form {
+.search-form {
   text-align: left;
   margin-left: 35px;
 }

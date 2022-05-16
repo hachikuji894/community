@@ -1,7 +1,7 @@
 package com.hachikuji.server.service;
 
 import com.hachikuji.frame.security.utils.SecurityUtils;
-import com.hachikuji.server.model.UserInfoBody;
+import com.hachikuji.server.domain.UserInfoBody;
 import com.hachikuji.frame.generate.entity.User;
 import com.hachikuji.frame.generate.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ public class SysUserService {
 
         User user  = SecurityUtils.getLoginUser().getUser();
         UserInfoBody body  = new UserInfoBody();
-        body.setName(user.getUsername());
-        body.setAvatar(user.getHeaderUrl());
+        body.setUsername(user.getUsername());
+        body.setHeaderUrl(user.getHeaderUrl());
 
         return body;
     }
 
-    public User getUser(){
+    public User getUserAllInfo(){
         return SecurityUtils.getLoginUser().getUser();
     }
 

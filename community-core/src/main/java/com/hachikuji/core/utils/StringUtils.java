@@ -10,7 +10,6 @@ import java.util.Set;
 import com.hachikuji.core.constant.Constants;
 import com.hachikuji.core.text.StrFormatter;
 import org.springframework.util.AntPathMatcher;
-
 /**
  * 字符串工具类
  *

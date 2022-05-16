@@ -28,7 +28,7 @@ export function logout(token:string) {
 }
 export function getCodeImg() {
     return request({
-        url: '/captchaImage',
+        url: '/captcha',
         method: 'get',
     })
 }

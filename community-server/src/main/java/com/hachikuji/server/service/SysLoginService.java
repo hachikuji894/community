@@ -11,7 +11,7 @@ import com.hachikuji.server.exception.CaptchaException;
 import com.hachikuji.server.exception.CaptchaExpireException;
 import com.hachikuji.core.exception.ServiceException;
 import com.hachikuji.frame.generate.entity.User;
-import com.hachikuji.server.constant.CommunityConstants;
+import com.hachikuji.server.constant.NormalConstants;
 import com.hachikuji.frame.generate.service.UserService;
 import com.hachikuji.server.exception.UserPasswordNotMatchException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ import java.time.LocalDateTime;
  *
  */
 @Service
-public class SysLoginService {
+public class SysLoginService extends NormalConstants {
 
     @Autowired
     private LoginTicketService loginTicketService;
@@ -54,13 +54,13 @@ public class SysLoginService {
 
         validateCaptcha(code, uuid);
 
-        Authentication authentication = null;
+        Authentication authentication;
 
         password = createPassword(username,password);
 
         try
         {
-            // 该方法会去调用UserDetailsServiceImpl.loadUserByUsername
+            // 该方法会去调用 UserDetailsServiceImpl.loadUserByUsername
             authentication = authenticationManager
                     .authenticate(new UsernamePasswordAuthenticationToken(username, password));
         }
@@ -113,7 +113,7 @@ public class SysLoginService {
         LoginTicket loginTicket = new LoginTicket();
         loginTicket.setUserId(userId);
         loginTicket.setTicket(token);
-        loginTicket.setStatus(CommunityConstants.TICKET_VALID);
+        loginTicket.setStatus(NormalConstants.TICKET_VALID);
         loginTicket.setExpired(LocalDateTime.now());
 
         loginTicketService.save(loginTicket);

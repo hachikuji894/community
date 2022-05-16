@@ -22,10 +22,10 @@ public class SysHomeController{
     @Autowired
     private SysHomeService homeService;
 
-    @GetMapping("/list")
-    public AjaxResult getHomeInfoList(){
+    @GetMapping("/page")
+    public AjaxResult page(){
 
-        return AjaxResult.success(homeService.getHomeDataTablePage());
+        return AjaxResult.success(homeService.getHomePage());
 
     }
 

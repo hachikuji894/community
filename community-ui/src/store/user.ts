@@ -1,8 +1,8 @@
-import { getToken, setToken, removeToken } from '@/assets/ts/utils/cookies'
-import { login, getInfo, logout } from '@/assets/ts/api/login'
-import { defineStore } from 'pinia'
-import { LoginBody } from '@/assets/ts/entity'
-import { ElMessage } from 'element-plus'
+import {getToken, setToken, removeToken} from '@/assets/ts/utils/cookies'
+import {login, getInfo, logout} from '@/assets/ts/api/login'
+import {defineStore} from 'pinia'
+import {LoginBody} from '@/assets/ts/entity'
+import {ElMessage} from 'element-plus'
 
 export default defineStore({
     id: 'user',
@@ -14,8 +14,7 @@ export default defineStore({
         // roles: [],
         // permissions: []
     }),
-    getters: {
-    },
+    getters: {},
     actions: {
         setToken(token: string) {
             this.token = token
