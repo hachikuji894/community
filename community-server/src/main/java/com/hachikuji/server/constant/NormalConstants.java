@@ -38,6 +38,12 @@ public class NormalConstants {
     public static int ENTITY_TYPE_POST = 1;
     public static int ENTITY_TYPE_COMMENT = 2;
 
+    /**
+     *  私信类型
+     */
+    public static int MESSAGE_UNREAD = 0;
+    public static int MESSAGE_READ = 1;
+
 
 
 

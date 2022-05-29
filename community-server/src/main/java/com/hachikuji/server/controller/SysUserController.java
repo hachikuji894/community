@@ -4,6 +4,7 @@ import com.hachikuji.core.domain.AjaxResult;
 import com.hachikuji.server.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,13 +16,20 @@ public class SysUserController {
     SysUserService userService;
 
     /**
-     * 请求获得全部用户信息
+     *
      * @return 用户信息
      */
-    @GetMapping("/getInfo")
-    public AjaxResult getInfo(){
+    @GetMapping("/getSystemInfo")
+    public AjaxResult getSystemInfo(){
 
-        return AjaxResult.success(userService.getUserInfo());
+        return AjaxResult.success(userService.getSystemUserInfo());
+
+    }
+
+    @GetMapping("/getInfo/id/{id}")
+    public AjaxResult getInfo(@PathVariable Integer id){
+
+        return AjaxResult.success(userService.getUserInfo(id));
 
     }
 }

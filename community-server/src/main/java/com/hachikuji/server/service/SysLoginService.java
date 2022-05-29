@@ -32,7 +32,7 @@ import java.time.LocalDateTime;
  *
  */
 @Service
-public class SysLoginService extends NormalConstants {
+public class SysLoginService{
 
     @Autowired
     private LoginTicketService loginTicketService;

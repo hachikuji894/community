@@ -1,6 +1,7 @@
 package com.hachikuji.server.controller;
 
 import com.hachikuji.core.domain.AjaxResult;
+import com.hachikuji.server.constant.NormalConstants;
 import com.hachikuji.server.domain.RegisterBody;
 import com.hachikuji.server.service.SysRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * 注册控制器
+ *
  * @author hachikuji
  * @since 2021-11-29
  */
@@ -36,7 +38,7 @@ public class SysRegisterController {
     /**
      * 判断账号或邮箱是否已经存在
      *
-     * @param key 属性（账号 or 邮箱）
+     * @param key   属性（账号 or 邮箱）
      * @param value 值
      * @return true or false
      */
@@ -56,23 +58,22 @@ public class SysRegisterController {
     @GetMapping("/status/id/{id}")
     public AjaxResult status(@PathVariable int id) {
 
-        String message = registerService.status(id);
-
-        return AjaxResult.success(message);
-
+        return registerService.getStatusById(id) == NormalConstants.ACTIVATION_UNDO ?
+                AjaxResult.success("注册成功，我们已经向您的邮箱发送了一封激活邮件，请尽快激活！") :
+                AjaxResult.success("该账号已经被激活，请登录！");
     }
 
     /**
      * 激活账户
      *
-     * @param id 用户 id
+     * @param id             用户 id
      * @param activationCode 用户 激活码
      * @return 激活反馈信息
      */
     @GetMapping("/activate/id/{id}/code/{code}")
     public AjaxResult activate(@PathVariable("id") int id, @PathVariable("code") String activationCode) {
 
-        String message = registerService.activation(id, activationCode);
+        String message = registerService.activate(id, activationCode);
 
         return AjaxResult.success(message);
 

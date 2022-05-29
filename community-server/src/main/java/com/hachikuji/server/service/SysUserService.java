@@ -13,19 +13,31 @@ public class SysUserService {
     @Autowired
     UserService userService;
 
-    public UserInfoBody getUserInfo(){
+    /**
+     * 无参数默认放回本用户的信息
+     * @return 用户 DO
+     */
 
-        User user  = SecurityUtils.getLoginUser().getUser();
-        UserInfoBody body  = new UserInfoBody();
-        body.setUsername(user.getUsername());
-        body.setHeaderUrl(user.getHeaderUrl());
+    public UserInfoBody getSystemUserInfo() {
 
-        return body;
+        User user = SecurityUtils.getLoginUser().getUser();
+        return new UserInfoBody(user.getUsername(), user.getHeaderUrl());
     }
 
-    public User getUserAllInfo(){
+
+    public UserInfoBody getUserInfo(Integer id) {
+
+        User user = userService.getById(id);
+        return new UserInfoBody(user.getUsername(), user.getHeaderUrl());
+    }
+
+
+    public User getSystemUser() {
         return SecurityUtils.getLoginUser().getUser();
     }
 
+    public Integer getSystemUserId() {
+        return SecurityUtils.getLoginUser().getUser().getId();
+    }
 
 }

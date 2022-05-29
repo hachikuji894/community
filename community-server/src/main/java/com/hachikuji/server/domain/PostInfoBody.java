@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class HomeInfoBody extends UserInfoBody{
+public class PostInfoBody {
 
     /**
      * 帖子信息

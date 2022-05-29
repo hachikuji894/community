@@ -39,7 +39,7 @@ public class SysRegisterService {
         User user = createUser(username,password,email);
 
         //发送邮件
-        String link = "http://localhost:3000/#/activation/id/"+user.getId()+"/activationCode/"+user.getActivationCode();
+        String link = "http://localhost:3000/#/activate/id/"+user.getId()+"/activationCode/"+user.getActivationCode();
 
         String content = "<html>\n" +
                 "<body>\n" +
@@ -85,7 +85,7 @@ public class SysRegisterService {
 
     }
 
-    public String activation(int id, String activationCode) {
+    public String activate(int id, String activationCode) {
 
         User user = userService.getById(id);
 
@@ -106,14 +106,9 @@ public class SysRegisterService {
 
     }
 
-    public String status(int id){
+    public int getStatusById(int id){
 
-        int status = userService.getById(id).getStatus();
-
-        if (status == NormalConstants.ACTIVATION_UNDO)
-            return  "注册成功，我们已经向您的邮箱发送了一封激活邮件，请尽快激活！";
-        else
-            return  "该账号已经被激活，请登录！";
+        return userService.getById(id).getStatus();
 
     }
 
