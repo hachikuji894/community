@@ -8,6 +8,7 @@ Community 是牛客网讨论区实战项目，用于巩固 Web 开发所学的�
 - 后端框架：Spring Boot 2.5.6 
 - 持久层架构：MyBatis-Plus 3.3.2 + MySQL 5.7 + Redis 5.0
 - 安全框架：Spring Security
+- 加密库：Jasypt
 
 ## 在线体验
 - admin/admin

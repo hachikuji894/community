@@ -32,6 +32,7 @@
 		<fastjson.version>1.2.78</fastjson.version>
 		<kaptcha.version>2.3.2</kaptcha.version>
 		<jjwt.version>0.9.1</jjwt.version>
+		<jasypt.version>2.0.0</jasypt.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +56,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
 		</dependency>
 		<!-- Mybatis-Plus框架 -->
 		<dependency>
@@ -112,6 +117,11 @@
 			<version>${jjwt.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>${jasypt.version}</version>
+		</dependency>
 
 
 	</dependencies>

@@ -1,7 +1,15 @@
-server:
-  port: 6000
-  servlet:
-    context-path: /community
+#================== 中间件配置 ========================
+env:
+  baseurl: ENC(lYQz9/f/W2+XxDAWZGH1ViaBIjsFWOUV)
+  username: ENC(lOYOrvpRxh1fhJGHnF/nSA==)
+  password: ENC(MOKbutdwohLpXWThHrZtKWRpX1ABdl8p)
+  port:
+    mysql: 7000
+    redis: 7001
+    zookeeper: 7002
+    kafka: 7003
+    kafka-manager: 7004
+#=====================================================
 
 # token配置
 token:
@@ -12,13 +20,20 @@ token:
   # 令牌有效期（默认30分钟）
   expireTime: 30
 
+#=====================================================
+
+server:
+  port: 6000
+  servlet:
+    context-path: /community
+
 spring:
   # 数据库配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/community?useSSL=false&useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: 123456
+    url: jdbc:mysql://${env.baseurl}:${env.port.mysql}/community?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: ${env.username}
+    password: ${env.password}
     driver-class-name: com.mysql.cj.jdbc.Driver  # 3.2.0开始支持SPI可省略此配置
 
   # 邮箱发送配置
@@ -45,13 +60,13 @@ spring:
   # Redis 配置
   redis:
     # 地址
-    host: localhost
-    # 端口，默认为6379
-    port: 6379
+    host: ${env.baseurl}
+    # 端口，默认为 6379
+    port: ${env.port.redis}
     # 数据库索引
     database: 0
     # 密码
-    password: # 123456
+    password: ${env.password}
     # 连接超时时间
     timeout: 10s
     lettuce:
@@ -69,6 +84,39 @@ spring:
     encoding: UTF-8
     # 国际化资源文件路径
     basename: static/i18n/messages
+  # 消息队列
+  kafka:
+    bootstrap-servers: ${env.baseurl}:${env.port.kafka}
+    producer: # 生产者
+      retries: 0 # 设置大于0的值，则客户端会将发送失败的记录重新发送
+      batch-size: 16
+      buffer-memory: 33554432
+      acks: 1
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: test-consumer-group
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      # 当每一条记录被消费者监听器（ListenerConsumer）处理之后提交
+      # RECORD
+      # 当每一批poll()的数据被消费者监听器（ListenerConsumer）处理之后提交
+      # BATCH
+      # 当每一批poll()的数据被消费者监听器（ListenerConsumer）处理之后，距离上次提交时间大于TIME时提交
+      # TIME
+      # 当每一批poll()的数据被消费者监听器（ListenerConsumer）处理之后，被处理record数量大于等于COUNT时提交
+      # COUNT
+      # TIME |　COUNT　有一个条件满足时提交
+      # COUNT_TIME
+      # 当每一批poll()的数据被消费者监听器（ListenerConsumer）处理之后, 手动调用Acknowledgment.acknowledge()后提交
+      # MANUAL
+      # 手动调用Acknowledgment.acknowledge()后立即提交，一般使用这种
+      # MANUAL_IMMEDIATE
+      ack-mode: manual_immediate
 
 
 
